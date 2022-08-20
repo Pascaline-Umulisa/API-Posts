@@ -14,8 +14,6 @@ RecyclerView.Adapter<PostViewHolder>(){
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
         var currentPost=postList.get(position)
-        holder.binding.tvUserid?.text=currentPost.userId.toString()
-        holder.binding.tvId?.text=currentPost.id.toString()
         holder.binding.tvTitle?.text=currentPost.title.toString()
         holder.binding.tvBody?.text=currentPost.body.toString()
 
