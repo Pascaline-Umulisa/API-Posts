@@ -1,5 +1,6 @@
 package com.pascaline.myposts
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -16,6 +17,12 @@ RecyclerView.Adapter<PostViewHolder>(){
         var currentPost=postList.get(position)
         holder.binding.tvTitle?.text=currentPost.title.toString()
         holder.binding.tvBody?.text=currentPost.body.toString()
+        val context =holder.itemView.context
+        holder.binding.cvPost?.setOnClickListener {
+            val intent=Intent(context,CommentsActivity::class.java)
+            intent.putExtra("POST_ID",currentPost.id)
+            context.startActivity(intent)
+        }
 
     }
 
