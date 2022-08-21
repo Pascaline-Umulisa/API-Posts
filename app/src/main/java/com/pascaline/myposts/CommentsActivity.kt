@@ -3,6 +3,7 @@ package com.pascaline.myposts
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.pascaline.myposts.databinding.ActivityCommentsBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -18,6 +19,7 @@ class CommentsActivity : AppCompatActivity() {
         obtainPostId()
         fetchPostId()
         setUpToolbar()
+        fetchComments()
     }
     fun obtainPostId(){
         postId=intent.extras?.getInt("POST_ID")?:0
@@ -29,8 +31,8 @@ class CommentsActivity : AppCompatActivity() {
             override fun onResponse(call: Call<Post>, response: Response<Post>) {
                 if(response.isSuccessful){
                     var post=response.body()
-                    binding.tvBodyC.text=post?.body
-                    binding.tvTitleC.text=post?.title
+                    binding.tvBodyP.text=post?.body
+                    binding.tvTitleP.text=post?.title
                 }
             }
 
@@ -43,5 +45,25 @@ class CommentsActivity : AppCompatActivity() {
         setSupportActionBar(binding.tbComments)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowTitleEnabled(false)
+    }
+    fun fetchComments(){
+        var apiClient=APIclient.buildApiClient(ApiInterface::class.java)
+       var request=apiClient.getComments()
+        request.enqueue(object : Callback<List<Comment>> {
+            override fun onResponse(call: Call<List<Comment>>, response: Response<List<Comment>>) {
+                if(response.isSuccessful){
+                    var comments=response.body()
+                    Toast.makeText(baseContext,"fetched ${comments!!.size} posts",Toast.LENGTH_LONG).show()
+
+                    var commentAdapter=CommentAdapter(comments)
+                    binding.rvComments.layoutManager= LinearLayoutManager(this@CommentsActivity)
+                    binding.rvComments.adapter=commentAdapter
+                }
+            }
+
+            override fun onFailure(call: Call<List<Comment>>, t: Throwable) {
+                Toast.makeText(baseContext,t.message,Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 }

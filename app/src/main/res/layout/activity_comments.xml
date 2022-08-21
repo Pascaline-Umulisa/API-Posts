@@ -7,7 +7,7 @@
     tools:context=".CommentsActivity">
 
     <TextView
-        android:id="@+id/tvTitleC"
+        android:id="@+id/tvTitleP"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -19,14 +19,14 @@
         app:layout_constraintTop_toBottomOf="@+id/tbComments" />
 
     <TextView
-        android:id="@+id/tvBodyC"
+        android:id="@+id/tvBodyP"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="TextView"
-        app:layout_constraintEnd_toEndOf="@+id/tvTitleC"
-        app:layout_constraintStart_toStartOf="@+id/tvTitleC"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitleC" />
+        app:layout_constraintEnd_toEndOf="@+id/tvTitleP"
+        app:layout_constraintStart_toStartOf="@+id/tvTitleP"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitleP" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/tbComments"
@@ -46,4 +46,17 @@
             android:textColor="@color/white"
             android:textSize="20sp" />
     </androidx.appcompat.widget.Toolbar>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvComments"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvBodyP"
+        tools:listitem="@layout/comment_list_item" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
