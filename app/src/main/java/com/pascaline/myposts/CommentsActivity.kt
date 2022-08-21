@@ -45,6 +45,7 @@ class CommentsActivity : AppCompatActivity() {
         setSupportActionBar(binding.tbComments)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowTitleEnabled(false)
+//        supportActionBar?.g
     }
     fun fetchComments(){
         var apiClient=APIclient.buildApiClient(ApiInterface::class.java)
