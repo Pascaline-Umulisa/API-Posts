@@ -5,7 +5,8 @@
     android:id="@+id/cvComment"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardElevation="8dp">
+    app:cardElevation="16dp"
+    android:layout_margin="2dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
